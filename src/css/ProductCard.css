@@ -1,0 +1,62 @@
+/* src/ProductCard.css */
+
+.product-card {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    padding: 16px;
+    text-align: center;
+    max-width: 200px;
+    flex: 0 0 auto;
+}
+
+.product-card input {
+    width: 50px;
+}
+
+.product-card img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.product-card h2 {
+    font-size: 1.5em;
+    margin: 10px 0;
+}
+
+.product-card p {
+    margin: 10px 0;
+}
+
+.product-card button {
+    padding: 8px 16px;
+    font-size: 1em;
+    margin-top: 10px;
+    cursor: pointer;
+}
+
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    .product-card {
+        max-width: 100%; /* Делаем карточку товара полной ширины на планшетах и мобильных устройствах */
+    }
+}
+
+@media (max-width: 576px) {
+    .product-card {
+        padding: 12px; /* Уменьшаем отступы в карточке товара на узких экранах */
+    }
+
+    .product-card h2 {
+        font-size: 1.2em; /* Уменьшаем размер заголовка на узких экранах */
+    }
+
+    .product-card p {
+        font-size: 0.9em; /* Уменьшаем размер текста описания на узких экранах */
+    }
+
+    .product-card button {
+        padding: 6px 12px; /* Уменьшаем размер кнопки на узких экранах */
+        font-size: 0.8em; /* Уменьшаем размер шрифта кнопки на узких экранах */
+    }
+}

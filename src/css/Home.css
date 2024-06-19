@@ -1,0 +1,49 @@
+.home-image {
+  width: 100%;
+  max-width: 600px;
+  margin-top: 20px;
+  border-radius: 35px;
+}
+.promo {
+  margin-top: 30px;
+  background-color: #f8f8f8;
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.promo h2 {
+  color: #d2691e;
+}
+
+.promo p {
+  color: #8b4513;
+}
+
+/* Медиазапрос для улучшения адаптивности изображения */
+@media (max-width: 768px) {
+  .home-image {
+    border-radius: 20px; /* Уменьшаем радиус скругления на планшетах и мобильных устройствах */
+  }
+  .promo {
+    padding: 15px; /* Уменьшаем внутренние отступы на планшетах и мобильных устройствах */
+  }
+}
+
+@media (max-width: 576px) {
+  .home-image {
+    margin-top: 10px; /* Уменьшаем отступ сверху на мобильных устройствах */
+    border-radius: 10px; /* Еще больше уменьшаем радиус скругления на узких экранах */
+  }
+  .promo {
+    margin-top: 20px; /* Увеличиваем отступ сверху на узких экранах */
+    border-radius: 5px; /* Уменьшаем радиус скругления на мобильных устройствах */
+  }
+
+  .promo h2 {
+    font-size: 1.8em; /* Уменьшаем размер заголовка на мобильных устройствах */
+  }
+
+  .promo p {
+    font-size: 0.9em; /* Уменьшаем размер текста на мобильных устройствах */
+  }
+}

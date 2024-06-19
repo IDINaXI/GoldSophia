@@ -1,38 +1,161 @@
+/* Базовые стили */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  font-family: 'Arial, sans-serif';
   min-height: 100vh;
   display: flex;
   flex-direction: column;
+}
+
+.logo {
+  width: 7%;
+  height: auto;
+}
+
+.App-header {
+  background: linear-gradient(to bottom, #FF7F50, #FF6347);
+  height: 8vh; /* Высота по умолчанию */
+  display: flex;
   align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
+  justify-content: space-between;
+  padding: 0 30px;
   color: white;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  z-index: 1000;
 }
 
-.App-link {
-  color: #61dafb;
+.social-links {
+  display: flex;
+  align-items: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.social-logo {
+  height: 30px;
+  margin: 1vh;
+}
+
+.nav-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.nav-button, .cart-button, .category-button {
+  background: linear-gradient(to bottom, #FF7F50, #FF6347);
+  color: white;
+  border: none;
+  padding: 8px 15px; /* Уменьшаем внутренние отступы кнопок */
+  border-radius: 5px;
+  margin: 5px;
+  transition: background 0.3s ease;
+  font-weight: bold;
+  font-size: 14px; /* Устанавливаем размер шрифта */
+}
+
+.nav-button:hover, .cart-button:hover, .category-button:hover {
+  background: linear-gradient(to bottom, #FF6347, #FF4500);
+}
+
+.App-footer {
+  background: linear-gradient(to bottom, #FF6347, #FF4500);
+  color: white;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 10px 10px;
+}
+
+.App-footer form {
+  border-radius: 20px;
+  background-color: #f8f8f8;
+  padding: 10px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.App-footer h3 {
+  margin-right: 20px;
+  color: #d2691e;
+  font-size: 30px;
+}
+
+.App-content {
+  flex: 1;
+  padding-top: 8vh;
+}
+
+/* Медиазапросы */
+
+/* Для устройств с шириной экрана до 768px (планшеты и телефоны) */
+@media (max-width: 768px) {
+  .App-header {
+    height: 6vh; /* Уменьшаем высоту хедера на маленьких экранах */
+    padding: 0 15px; /* Уменьшаем отступы внутри хедера */
   }
-  to {
-    transform: rotate(360deg);
+
+  .nav-buttons {
+    gap: 5px;
+  }
+
+  .social-logo {
+    height: 20px;
+  }
+
+  /* Уменьшаем размер кнопок */
+  .nav-button, .cart-button, .category-button {
+    padding: 6px 10px;
+    font-size: 12px;
+  }
+
+  /* Уменьшаем размеры футера */
+  .App-footer {
+    padding: 5px 5px;
+  }
+
+  .App-footer form {
+    padding: 5px 10px;
+  }
+
+  .App-footer h3 {
+    font-size: 14px;
+  }
+}
+
+/* Для устройств с шириной экрана до 480px (смартфоны) */
+@media (max-width: 480px) {
+  .App-header {
+    height: 5vh; /* Еще больше уменьшаем высоту хедера */
+    padding: 0 10px; /* Уменьшаем отступы внутри хедера */
+  }
+
+  .nav-buttons {
+    gap: 3px;
+  }
+
+  .social-logo {
+    height: 15px;
+  }
+
+  /* Дополнительно уменьшаем размер кнопок */
+  .nav-button, .cart-button, .category-button {
+    padding: 5px 8px;
+    font-size: 6px;
+  }
+
+  /* Дополнительно уменьшаем размеры футера */
+  .App-footer {
+    padding: 3px 3px;
+  }
+
+  .App-footer form {
+    padding: 3px 5px;
+  }
+
+  .App-footer h3 {
+    font-size: 8px;
   }
 }

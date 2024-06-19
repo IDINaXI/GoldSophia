@@ -1,0 +1,65 @@
+/* src/css/Cart.css */
+.cart {
+    padding: 20px;
+}
+
+.cart h2 {
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+.cart ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart li {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 10px;
+}
+
+.cart img {
+    width: 100px;
+    height: auto;
+    margin-right: 20px;
+    border-radius: 10px;
+}
+
+.cart h3 {
+    margin: 0;
+    font-size: 1.5em;
+}
+
+.cart p {
+    margin: 5px 0;
+}
+
+/* Медиазапросы для адаптивности */
+@media (max-width: 768px) {
+    .cart {
+        padding: 10px; /* Уменьшаем отступы в корзине на планшетах и мобильных устройствах */
+    }
+}
+
+@media (max-width: 576px) {
+    .cart h2 {
+        font-size: 1.5em; /* Уменьшаем размер заголовка на узких экранах */
+    }
+
+    .cart li {
+        flex-direction: column; /* Отображаем элементы корзины в колонку на узких экранах */
+        align-items: flex-start; /* Выравниваем элементы корзины по левому краю на узких экранах */
+    }
+
+    .cart img {
+        width: 80px; /* Уменьшаем размер изображений в корзине на узких экранах */
+        margin-right: 10px;
+    }
+
+    .cart h3 {
+        font-size: 1.2em; /* Уменьшаем размер заголовка товара в корзине на узких экранах */
+    }
+}
