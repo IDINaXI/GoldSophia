@@ -1,9 +1,22 @@
 import React from 'react';
 import Card from 'react-bootstrap/Card';
-import Button from 'react-bootstrap/Button'; // Добавьте этот импорт
+import Button from 'react-bootstrap/Button';
 import '../css/ProductList.css';
 
-const products = [
+interface Product {
+  id: number;
+  name: string;
+  description: string;
+  price: number;
+  image: string;
+  weight?: number; // Optional weight property
+}
+
+interface ProductListProps {
+  addToCart: (product: Product, weight: number) => void;
+}
+
+const products: Product[] = [
   {
     id: 1,
     name: 'Миндаль',
@@ -18,10 +31,15 @@ const products = [
     price: 9.99,
     image: 'https://oreshkashop.ru/pictures/good_id2539/pic_name10fc09905902ed82907dddfe342751f5.jpg'
   },
-  // Добавьте больше продуктов по необходимости
+  // Add more products as needed
 ];
 
-const ProductList = ({ addToCart }) => {
+const ProductList: React.FC<ProductListProps> = ({ addToCart }) => {
+  const handleWeightChange = (event: React.ChangeEvent<HTMLInputElement>, product: Product) => {
+    const weight = parseFloat(event.target.value);
+    product.weight = weight;
+  };
+
   return (
     <div className="product-list">
       {products.map((product) => (
@@ -37,12 +55,9 @@ const ProductList = ({ addToCart }) => {
               min="0.1"
               step="0.1"
               className="weight-input"
-              onChange={(e) => {
-                const weight = parseFloat(e.target.value);
-                product.weight = weight;
-              }}
+              onChange={(e) => handleWeightChange(e, product)}
             />
-            <Button onClick={() => addToCart(product, product.weight)}>Добавить в корзину</Button>
+            <Button onClick={() => addToCart(product, product.weight || 0)}>Добавить в корзину</Button>
           </Card.Body>
         </Card>
       ))}

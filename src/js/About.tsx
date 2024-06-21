@@ -2,32 +2,39 @@ import React, { useState, useEffect } from 'react';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
 import '../css/About.css';
-import sert from '../images/sertifikat_kachestva.jpg';
 
-const About = () => {
-  const [reviews, setReviews] = useState([]);
-  const [reviewText, setReviewText] = useState('');
-  const [customerName, setCustomerName] = useState('');
+interface Review {
+  name: string;
+  text: string;
+}
+
+const About: React.FC = () => {
+  const [reviews, setReviews] = useState<Review[]>([]);
+  const [reviewText, setReviewText] = useState<string>('');
+  const [customerName, setCustomerName] = useState<string>('');
 
   useEffect(() => {
-    const savedReviews = JSON.parse(localStorage.getItem('reviews')) || [];
-    setReviews(savedReviews);
+    const savedReviewsJSON = localStorage.getItem('reviews');
+    if (savedReviewsJSON) {
+      const savedReviews = JSON.parse(savedReviewsJSON) as Review[];
+      setReviews(savedReviews);
+    }
   }, []);
 
-  const handleReviewChange = (event) => {
+  const handleReviewChange = (event: React.ChangeEvent<HTMLTextAreaElement>) => {
     setReviewText(event.target.value);
   };
 
-  const handleCustomerNameChange = (event) => {
+  const handleCustomerNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCustomerName(event.target.value);
   };
 
-  const handleReviewSubmit = (event) => {
+  const handleReviewSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (reviewText.trim() !== '') {
-      const newReview = {
+      const newReview: Review = {
         name: customerName || 'Аноним',
-        text: reviewText
+        text: reviewText,
       };
       const updatedReviews = [...reviews, newReview];
       setReviews(updatedReviews);
@@ -41,16 +48,15 @@ const About = () => {
     <div className="about">
       <h1>О компании GoldSofa</h1>
       <p>Добро пожаловать в GoldSophia! Мы предоставляем лучшие орехи и сухофрукты.</p>
-      <img className="sert" src={sert} alt="GoldSofa sert" />
+      <img className="sert" src='../images/sertifikat_kachestva.jpg' alt="GoldSofa sert" />
       <h2>Наше местоположение</h2>
       <div className="map-container">
-        <iframe 
+        <iframe
           title="GoldSofa Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d761.6236612463837!2d27.612364771723367!3d53.92875005007791!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x46dbcf2d70d90f73%3A0x1fe70a03f42c27bf!2z0JTQsNCx0YDQsNC90L7QvA!5e0!3m2!1sen!2sby!4v1718630993128!5m2!1sen!2sby"
           width="70%"
           height="70%"
           style={{ border: 0 }}
-          allowFullScreen=""
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
         ></iframe>
@@ -77,7 +83,9 @@ const About = () => {
             placeholder="Введите ваш отзыв"
           />
         </Form.Group>
-        <Button style={{marginTop: '20px'}} variant="primary" type="submit">Отправить отзыв</Button>
+        <Button style={{ marginTop: '20px' }} variant="primary" type="submit">
+          Отправить отзыв
+        </Button>
       </Form>
 
       {reviews.length > 0 ? (

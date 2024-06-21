@@ -4,20 +4,31 @@ import Button from 'react-bootstrap/Button';
 import Form from 'react-bootstrap/Form';
 import '../css/Cart.css';
 
-const Cart = ({ cartItems, setCartItems }) => {
-  const [email, setEmail] = useState('');
-  const [customerName, setCustomerName] = useState('');
-  const [orderPlaced, setOrderPlaced] = useState(false);
+interface CartItem {
+  name: string;
+  weight: number;
+  price: number;
+}
 
-  const handleEmailChange = (event) => {
+interface CartProps {
+  cartItems: CartItem[];
+  setCartItems: React.Dispatch<React.SetStateAction<CartItem[]>>;
+}
+
+const Cart: React.FC<CartProps> = ({ cartItems, setCartItems }) => {
+  const [email, setEmail] = useState<string>('');
+  const [customerName, setCustomerName] = useState<string>('');
+  const [orderPlaced, setOrderPlaced] = useState<boolean>(false);
+
+  const handleEmailChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(event.target.value);
   };
 
-  const handleCustomerNameChange = (event) => {
+  const handleCustomerNameChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     setCustomerName(event.target.value);
   };
 
-  const handleOrderSubmit = (event) => {
+  const handleOrderSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
     const orderDetails = {
@@ -28,15 +39,17 @@ const Cart = ({ cartItems, setCartItems }) => {
         price: item.price
       }))
     };
-    const rounded = (number) => +number.toFixed(2);
+
+    const rounded = (number: number) => +number.toFixed(2);
 
     // Отправка данных заказа на почту через EmailJS
     emailjs.send('service_k4263ki', 'template_icoi9l5', {
       to_name: customerName || 'Customer',  // Имя получателя
       from_name: 'GoldSofa',  // Ваше имя или название компании
       reply_to: orderDetails.email,  // Email получателя
-      message: orderDetails.items.map(item => 
-        `Товар: ${item.name}, Вес: ${item.weight} кг, Цена: $${rounded(item.price * item.weight)}`).join('\n')
+      message: orderDetails.items.map(item =>
+        `Товар: ${item.name}, Вес: ${item.weight} кг, Цена: $${rounded(item.price * item.weight)}`
+      ).join('\n')
     }, '798F7vFXUvmd2C_9T')  // Ваш User ID здесь
     .then((response) => {
       console.log('Email sent successfully!', response.status, response.text);
@@ -47,7 +60,7 @@ const Cart = ({ cartItems, setCartItems }) => {
     });
   };
 
-  const handleRemoveItem = (index) => {
+  const handleRemoveItem = (index: number) => {
     const updatedCartItems = cartItems.filter((_, i) => i !== index);
     setCartItems(updatedCartItems);
   };
@@ -70,7 +83,7 @@ const Cart = ({ cartItems, setCartItems }) => {
             </li>
           ))}
         </ul>
-      )}  
+      )}
 
       {!orderPlaced ? (
         <Form onSubmit={handleOrderSubmit}>
